@@ -57,7 +57,6 @@ public class StudentSet {
     public StudentSet difference(StudentSet otherSet) {
         StudentSet resultSet = new StudentSet();
         resultSet.students.addAll(this.students);
-        // Удаляет из resultSet все элементы, которые есть в otherSet.students
         resultSet.students.removeAll(otherSet.students);
         return resultSet;
     }
