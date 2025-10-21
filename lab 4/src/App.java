@@ -117,7 +117,7 @@ class RecordBook {
 
 
         public double getSessionAverage() {
-            if (exams.isEmpty()) return 0.0;
+            if (exams.isEmpty()) return 0;
 
             int total = 0;
             for (Exam exam : exams) {
@@ -192,7 +192,6 @@ class Student {
         return lastName + " " + firstName + " " + patronymic;
     }
 
-    // Метод для проверки, является ли студент отличником
     public boolean isExcellent() {
         return recordBook.isExcellent();
     }
@@ -202,7 +201,6 @@ public class App {
     public static void main(String[] args) {
         List<Student> students = new ArrayList<>();
 
-        // Чтение данных из файла
         try (BufferedReader reader = new BufferedReader(new FileReader("input.txt"))) {
             String line;
             Student currentStudent = null;
@@ -213,7 +211,6 @@ public class App {
                     continue;
                 }
 
-                // Проверяем, является ли строка информацией о студенте
                 if (!line.startsWith("Сессия") && !line.startsWith("Экзамены:") &&
                         !line.startsWith("Зачеты:") && (currentStudent == null || currentSession != null)) {
 
@@ -236,10 +233,9 @@ public class App {
 
                         currentStudent = new Student(lastName, firstName, patronymic, course, group);
                         students.add(currentStudent);
-                        currentSession = null; // Сбрасываем текущую сессию
+                        currentSession = null; 
                     }
                 }
-                // Обрабатываем информацию о сессии
                 else if (line.startsWith("Сессия") && currentStudent != null) {
                     String[] sessionTokens = line.split("\\s+");
                     if (sessionTokens.length >= 2) {
@@ -248,13 +244,11 @@ public class App {
                             currentSession = currentStudent.getRecordBook().new Session(sessionNumber);
                             currentStudent.getRecordBook().addSession(currentSession);
                         } catch (NumberFormatException e) {
-                            // Игнорируем ошибку парсинга
+                            System.err.print("Ошибка парсинга");
                         }
                     }
                 }
-                // Обрабатываем экзамены
                 else if (line.equals("Экзамены:") && currentSession != null) {
-                    // Читаем экзамены до строки "Зачеты:" или пустой строки
                     line = reader.readLine();
                     while (line != null && !line.trim().isEmpty() && !line.equals("Зачеты:")) {
                         String[] examTokens = line.split("\\s+");
@@ -271,19 +265,16 @@ public class App {
                                 String subject = subjectBuilder.toString();
                                 currentSession.addExam(new Exam(subject, grade));
                             } catch (NumberFormatException e) {
-                                // Игнорируем строки с некорректными оценками
+                                System.err.println("Некорректный формат");
                             }
                         }
                         line = reader.readLine();
                     }
-                    // Если следующая строка - "Зачеты:", продолжаем обработку
                     if (line != null && line.equals("Зачеты:")) {
-                        // Продолжим в следующем условии
                     } else {
                         continue;
                     }
                 }
-                // Обрабатываем зачеты
                 if (line != null && line.equals("Зачеты:") && currentSession != null) {
                     line = reader.readLine();
                     while (line != null && !line.trim().isEmpty() &&
@@ -320,22 +311,19 @@ public class App {
             e.printStackTrace();
         }
 
-        // Запись результатов в файл
         try (PrintWriter writer = new PrintWriter(new FileWriter("output.txt"))) {
             writer.println("ОТЧЕТ ПО СТУДЕНТАМ");
-            writer.println("=================");
             writer.println();
 
             int excellentStudentsCount = 0;
 
             for (Student student : students) {
-                writer.println("СТУДЕНТ: " + student.getFullName());
+                writer.println("Студент: " + student.getFullName());
                 writer.println("Курс: " + student.getCourse() + ", Группа: " + student.getGroup());
 
-                // Проверяем, является ли студент отличником
                 boolean isExcellent = student.isExcellent();
                 if (isExcellent) {
-                    writer.println("СТАТУС: ОТЛИЧНИК");
+                    writer.println("Отличник?: ОТЛИЧНИК");
                     excellentStudentsCount++;
                 }
                 writer.println();
@@ -359,19 +347,15 @@ public class App {
                     double sessionAverage = session.getSessionAverage();
                     writer.printf("Средний балл за сессию: %.2f\n", sessionAverage);
 
-                    // Проверяем, сдана ли сессия на отлично
                     boolean isSessionExcellent = session.isSessionExcellent();
                     writer.println("Статус сессии: " + (isSessionExcellent ? "ОТЛИЧНО" : "НЕ ОТЛИЧНО"));
                     writer.println();
                 }
 
-                writer.printf("ОБЩИЙ СРЕДНИЙ БАЛЛ: %.2f\n", overallAverage);
-                writer.println("=========================================");
-                writer.println();
+                writer.printf("Общий средний балл: %.2f\n", overallAverage);
             }
 
-            // Добавляем общую статистику
-            writer.println("ОБЩАЯ СТАТИСТИКА:");
+            writer.println("Общая статистика:");
             writer.println("Всего студентов: " + students.size());
             writer.println("Количество отличников: " + excellentStudentsCount);
 
@@ -382,16 +366,13 @@ public class App {
                         .orElse(0.0);
                 writer.printf("Средний балл по всем студентам: %.2f\n", totalAverage);
 
-                // Процент отличников
                 double excellentPercentage = (double) excellentStudentsCount / students.size() * 100;
-                writer.printf("Процент отличников: %.2f%%\n", excellentPercentage);
+                writer.printf("Процент отличников: %.2f\n", excellentPercentage);
             }
 
         } catch (IOException e) {
             System.out.println("Ошибка записи файла: " + e.getMessage());
         }
 
-        System.out.println("Обработка завершена. Результаты сохранены в output.txt");
-        System.out.println("Обработано студентов: " + students.size());
     }
 }

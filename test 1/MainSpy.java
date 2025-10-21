@@ -4,10 +4,8 @@ public class MainSpy {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int p = scanner.nextInt();
-
         String originalNumberStr = Integer.toString(p);
         int length = originalNumberStr.length();
-
         for (int i = 0; i < length; i++) {
             for (int j = 0; j <= 9; j++) {
                 StringBuilder tempNumberStr = new StringBuilder(originalNumberStr);
@@ -19,7 +17,7 @@ public class MainSpy {
                     continue;
                 }
 
-                if (i == 0 && j == 0 && length > 1) {
+                if (i == 0 && j == 0) {
                     continue;
                 }
 
