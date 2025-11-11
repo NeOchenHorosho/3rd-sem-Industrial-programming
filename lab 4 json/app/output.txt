@@ -1,0 +1,24 @@
+STUDENT: Иванов,Иван,Иванович,2,ПО-21
+SESSION: 1
+EXAM: Математика,10
+EXAM: Физика,9
+CREDIT: Философия,true
+CREDIT: История,true
+SESSION: 2
+EXAM: Программирование,10
+CREDIT: Английский,true
+
+STUDENT: Петров,Петр,Петрович,2,ПО-21
+SESSION: 1
+EXAM: Математика,8
+EXAM: Физика,9
+CREDIT: Философия,true
+
+STUDENT: Сидорова,Мария,Александровна,3,ИС-31
+SESSION: 1
+EXAM: Базы данных,10
+EXAM: Алгоритмы,9
+CREDIT: Экономика,true
+SESSION: 2
+EXAM: Сети,10
+CREDIT: Право,true

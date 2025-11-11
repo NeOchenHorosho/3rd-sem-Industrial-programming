@@ -1,0 +1,120 @@
+[
+  {
+    "lastName": "Иванов",
+    "firstName": "Иван",
+    "middleName": "Иванович",
+    "course": 2,
+    "group": "ПО-21",
+    "sessions": [
+      {
+        "sessionNumber": 1,
+        "exams": [
+          {
+            "subject": "Математика",
+            "grade": 10
+          },
+          {
+            "subject": "Физика",
+            "grade": 9
+          }
+        ],
+        "credits": [
+          {
+            "subject": "Философия",
+            "passed": true
+          },
+          {
+            "subject": "История",
+            "passed": true
+          }
+        ]
+      },
+      {
+        "sessionNumber": 2,
+        "exams": [
+          {
+            "subject": "Программирование",
+            "grade": 10
+          }
+        ],
+        "credits": [
+          {
+            "subject": "Английский",
+            "passed": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lastName": "Петров",
+    "firstName": "Петр",
+    "middleName": "Петрович",
+    "course": 2,
+    "group": "ПО-21",
+    "sessions": [
+      {
+        "sessionNumber": 1,
+        "exams": [
+          {
+            "subject": "Математика",
+            "grade": 8
+          },
+          {
+            "subject": "Физика",
+            "grade": 9
+          }
+        ],
+        "credits": [
+          {
+            "subject": "Философия",
+            "passed": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "lastName": "Сидорова",
+    "firstName": "Мария",
+    "middleName": "Александровна",
+    "course": 3,
+    "group": "ИС-31",
+    "sessions": [
+      {
+        "sessionNumber": 1,
+        "exams": [
+          {
+            "subject": "Базы данных",
+            "grade": 10
+          },
+          {
+            "subject": "Алгоритмы",
+            "grade": 9
+          }
+        ],
+        "credits": [
+          {
+            "subject": "Экономика",
+            "passed": true
+          }
+        ]
+      },
+      {
+        "sessionNumber": 2,
+        "exams": [
+          {
+            "subject": "Сети",
+            "grade": 10
+          }
+        ],
+        "credits": [
+          {
+            "subject": "Право",
+            "passed": true
+          }
+        ]
+      }
+    ]
+  }
+]
