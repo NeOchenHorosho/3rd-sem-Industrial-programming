@@ -86,9 +86,6 @@ public class ExpressionCalculatorApp extends Application {
         resultLabel.setStyle("-fx-border-color: red; -fx-padding: 10; -fx-background-color: #ffebee;");
     }
 
-    /**
-     * Алгоритм Shunting Yard - конвертация инфиксной записи в постфиксную (RPN)
-     */
     private String infixToRPN(String expression) {
         StringBuilder output = new StringBuilder();
         Deque<Character> stack = new ArrayDeque<>();
@@ -146,10 +143,6 @@ public class ExpressionCalculatorApp extends Application {
         
         return output.toString().trim();
     }
-
-    /**
-     * Вычисление выражения в польской нотации (RPN)
-     */
     private double evaluateRPN(String rpn) {
         Deque<Double> stack = new ArrayDeque<>();
         String[] tokens = rpn.split("\\s+");
